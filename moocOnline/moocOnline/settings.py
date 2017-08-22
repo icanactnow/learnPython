@@ -38,7 +38,10 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'users'
+    'users',
+    'courses',
+    'operation',
+    'organization',
 )
 AUTH_USER_MODEL='users.UserProfile' #重写setting方法，让表userProfile表覆盖默认user表
 
