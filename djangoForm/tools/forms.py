@@ -5,6 +5,6 @@ django.setup()
 from django import forms
 
 
-class AddForm(forms.Form):
+class AddForm(forms.Form):#表单里面有两项数据
     a = forms.IntegerField()
     b = forms.IntegerField()

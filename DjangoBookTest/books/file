@@ -1,0 +1,33 @@
+
+    建立数据库版本备份，以便后面升级使用
+
+#控制台中
+python3 manage.py makemigerations
+
+    1
+    2
+
+    1
+    2
+
+    同步数据库（在数据库中建表）
+
+python3 manage.py migrate
+
+    1
+
+    1
+
+    注册管理员账户
+
+python3 manage.py createsuperuser
+
+    1
+
+    1
+
+    在urls.py设置管理员路径
+
+urlpatterns = [
+    url(r'^admin/', admin.site.urls),
+    ]

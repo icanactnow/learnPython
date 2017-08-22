@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'books',
 ]
 
 MIDDLEWARE = [
@@ -73,7 +74,7 @@ WSGI_APPLICATION = 'DjangoBookTest.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE' :'django.db.backends.mysql',
-        'NAME' :'sys',
+        'NAME' :'mysql',
         'USER' :'root',
         'PASSWORD' :'admin',
         'HOST' :'',

@@ -1,4 +1,4 @@
-#codeing:utf8
+#coding:utf8
 from django.http import HttpResponse, Http404
 from django.shortcuts import render
 import datetime
