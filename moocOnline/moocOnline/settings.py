@@ -1,4 +1,4 @@
-#coding:utf8
+# coding:utf8
 """
 Django settings for moocOnline project.
 
@@ -14,8 +14,13 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 
+import sys
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+# 将apps引入到资源路径中
+sys.path.insert(0, os.path.join(BASE_DIR, 'apps'))
+sys.path.insert(0, os.path.join(BASE_DIR, 'extra_apps'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
@@ -27,8 +32,10 @@ SECRET_KEY = '@zv97*czg$9yg_t_cn-d$*(hghf0=n7@z&6y&zq8$33#!j99@f'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
-
+#在这里注册重写的类
+AUTHENTICATION_BACKENDS =(
+    'users.views.CustomBackend',
+)
 # Application definition
 
 INSTALLED_APPS = (
@@ -42,8 +49,10 @@ INSTALLED_APPS = (
     'courses',
     'operation',
     'organization',
+    'xadmin',
+    'crispy_forms',#注意依赖包要换成下划线
 )
-AUTH_USER_MODEL='users.UserProfile' #重写setting方法，让表userProfile表覆盖默认user表
+AUTH_USER_MODEL = 'users.UserProfile'  # 重写setting方法，让表userProfile表覆盖默认user表
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -61,7 +70,7 @@ ROOT_URLCONF = 'moocOnline.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR,'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -76,38 +85,42 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'moocOnline.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME':'moocOnline',
-        'USER':'root',
-        'PASSWORD':'admin',
-        'HOST':'127.0.0.1',
-    }
-}
+        'NAME': 'moocOnline',
+        'USER': 'root',
+        'PASSWORD': 'admin',
+        'HOST': '127.0.0.1',
+        'STORAGE_ENGINE': 'MyISAM / INNODB / ETC',
+        'OPTIONS': {
+            "init_command": "SET foreign_key_checks = 0;",
+        },
+    },
 
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'zh-hans'  # 后台汉化
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Shanghai'
 
 USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
-
+USE_TZ = False  # 设置为False即采用本地时间非国际时间
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS =(os.path.join(BASE_DIR, 'static'),)
 
-TEMPLATE_DIRS = (os.path.join(BASE_DIR,  'templates'),)
+
+TEMPLATE_DIRS = (os.path.join(BASE_DIR, 'templates').replace('\\','/'),)
