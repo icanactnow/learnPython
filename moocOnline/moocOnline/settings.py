@@ -42,7 +42,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
-    'django.contrib.sessions',
+    'django.contrib.sessions',#该应用自动处理request请求与post,处理sessionID以及post的时候自动发送sessionID
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'users',
@@ -51,6 +51,7 @@ INSTALLED_APPS = (
     'organization',
     'xadmin',
     'crispy_forms',#注意依赖包要换成下划线
+    'captcha',
 )
 AUTH_USER_MODEL = 'users.UserProfile'  # 重写setting方法，让表userProfile表覆盖默认user表
 
@@ -124,3 +125,11 @@ STATICFILES_DIRS =(os.path.join(BASE_DIR, 'static'),)
 
 
 TEMPLATE_DIRS = (os.path.join(BASE_DIR, 'templates').replace('\\','/'),)
+
+# 邮箱相关设置
+EMAIL_HOST  ='smtp.sina.com'
+EMAIL_PORT  = 25
+EMAIL_HOST_USER  ='sun694209060@sina.com'
+EMAIL_HOST_PASSWORD  ='Sun1991.'
+EMAIL_USE_TLS  =False
+EMAIL_FROM  ='sun694209060@sina.com'
