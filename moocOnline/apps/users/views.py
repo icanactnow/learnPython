@@ -22,22 +22,26 @@ class CustomBackend(ModelBackend):
 # 基于类的书写
 from django.views.generic.base import View
 from django.contrib.auth.hashers import make_password
+from utils.email_send import send_register_email
 
 class RegisterView(View):
     def post(self, request):
         register_form = RegisterForm(request.POST)
-        if register_form.is_valid():#如果验证通过
-            #保存用户及密码
-            #获取邮箱账号，以及将密码加密
+        if register_form.is_valid():  # 如果验证通过
+            # 保存用户及密码
+            # 获取邮箱账号，以及将密码加密
             user_name = request.POST.get('email', '')
             pass_word = request.POST.get('password', '')
             user_profile = UserProfile()
             user_profile.email = user_name
             user_profile.username = user_name
-            user_profile.password = make_password(pass_word)# 对密码进行加密保存，因为django 只存密文
+            user_profile.password = make_password(pass_word)  # 对密码进行加密保存，因为django 只存密文
             user_profile.save()
+            # 发送邮件
+            send_register_email(user_name,'register')
+            return render(request,'login.html')
         else:
-            return render(request,'register.html',{'register':register_form})
+            return render(request, 'register.html', {'register_form': register_form})
         return render(request, 'register.html')
 
     def get(self, request):
