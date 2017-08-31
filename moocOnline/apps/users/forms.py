@@ -16,3 +16,10 @@ class RegisterForm(forms.Form):
     email = forms.EmailField(required=True)
     password = forms.CharField(min_length=3)  # 最小长度为3
     captcha = CaptchaField()
+class ForgetPwdForm(forms.Form):
+    email = forms.EmailField(required=True)
+    captcha = CaptchaField()
+
+class ModifyForm(forms.Form):
+    password1 = forms.CharField(min_length=3)  # 最小长度为3
+    password2 = forms.CharField(min_length=3)  # 最小长度为3

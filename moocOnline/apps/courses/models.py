@@ -2,10 +2,11 @@
 from datetime import datetime
 
 from django.db import models
-
+from organization.models import CourseOrg
 
 # Create your models here.
 class Course(models.Model):
+    course_org = models.ForeignKey(CourseOrg,verbose_name=u'课程所属机构',null=True,blank=True)#这样做是保证没该字段之前添加的数据允许为空
     name = models.CharField(max_length=50, verbose_name=u'课程名')
     desc = models.CharField(max_length=300, verbose_name=u'课程描述')
     detail = models.TextField(verbose_name=u'课程详情')

@@ -52,6 +52,7 @@ INSTALLED_APPS = (
     'xadmin',
     'crispy_forms',#注意依赖包要换成下划线
     'captcha',
+    'pure_pagination',
 )
 AUTH_USER_MODEL = 'users.UserProfile'  # 重写setting方法，让表userProfile表覆盖默认user表
 
@@ -79,6 +80,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.core.context_processors.media',
             ],
         },
     },
@@ -133,3 +135,14 @@ EMAIL_HOST_USER  ='sun694209060@sina.com'
 EMAIL_HOST_PASSWORD  ='Sun1991.'
 EMAIL_USE_TLS  =False
 EMAIL_FROM  ='sun694209060@sina.com'
+
+#
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+
+PAGINATION_SETTINGS = {
+    'PAGE_RANGE_DISPLAYED': 10,
+    'MARGIN_PAGES_DISPLAYED': 2,
+
+    'SHOW_FIRST_PAGE_WHEN_INVALID': True,
+}

@@ -33,7 +33,7 @@ class CourseComment(models.Model):
 class UserFavorite(models.Model):
     user = models.ForeignKey(UserProfile,verbose_name=u'用户')
     fav_id = models.IntegerField(default=0,verbose_name=u'数据id')
-    fav_type = models.IntegerField(choices=(('1',u'课程'),('2','课程机构'),('3','讲师')),verbose_name=u'数据id')
+    fav_type = models.IntegerField(choices=(('1',u'课程'),('2','课程机构'),('3','讲师')),verbose_name=u'收藏类型')
     add_data = models.DateField(default=datetime.now, verbose_name=u'加入时间')
     class Mate:
         verbose_name = u'用户收藏'
