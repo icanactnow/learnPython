@@ -21,11 +21,16 @@ class Course(models.Model):
     class Meta:
         verbose_name = u'课程'
         verbose_name_plural = verbose_name
+    def course_lesson_num(self):
+        count = self.lesson_set.all().count()#通过反取取到拥有下级的数量
+        return count
+    def course_students(self):
+        return self.usercourse_set.all()[:3]
     def __str__(self):
         return self.name
 
 class Lesson(models.Model):
-    course = models.ForeignKey(Course, verbose_name=u'章节包含课程')
+    course = models.ForeignKey(Course, verbose_name=u'章节所属课程')
     name = models.CharField(max_length=50, verbose_name=u'章节名称')
     add_time = models.DateField(default=datetime.now, verbose_name=u'添加时间')
 

@@ -39,13 +39,13 @@
                                 <li><span
                                         class="pram word3">时&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;长：</span><span>{{ course.learn_times }}</span>
                                 </li>
-                                <li><span class="pram word3">章&nbsp;节&nbsp;数：</span><span>5</span></li>
+                                <li><span class="pram word3">章&nbsp;节&nbsp;数：</span><span>{{ course.course_lesson_num }}</span></li>
                                 <li><span class="pram word3">课程类别：</span><span title="">web开发/后端开发</span></li>
-                                <li class="piclist"><span class="pram word4">学习用户:</span>
-
+                                <li class="piclist"><span class="pram word4">已学用户:</span>
+                                {%  for student in course.course_students %}
                                     <span class="pic"><img width="40" height="40"
-                                                           src="../media/image/2016/12/default_big_14.png"/></span>
-
+                                                           src="{{ MEDIA_URL }}{{ student.user.image }}"/></span>
+                                {% endfor %}
                                 </li>
                             </ul>
                             <div class="btns">
@@ -91,10 +91,10 @@
                         <div class="clear">
                             <ul>
                                 <li>
-                                    <span>课 &nbsp;程&nbsp; 数：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   5</span>
+                                    <span>课 &nbsp;程&nbsp; 数：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   {{ course.course_org.course_org_course_num }}</span>
                                 </li>
                                 <li>
-                                    <span>教 &nbsp;师&nbsp; 数：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  0</span>
+                                    <span>教 &nbsp;师&nbsp; 数：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{ course.course_org.course_org_teacher_num }}</span>
                                 </li>
                                 <li>所在地区：&nbsp;&nbsp;{{ course.course_org.city }}</li>
                                 <li>认&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;证&nbsp;:

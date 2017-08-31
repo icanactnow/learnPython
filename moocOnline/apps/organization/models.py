@@ -35,7 +35,12 @@ class CourseOrg(models.Model):
     class Meta:
         verbose_name = u'机构表'
         verbose_name_plural = verbose_name
-
+    # 返回机构下面所有的课程
+    def course_org_course_num(self):
+        return self.course_set.all().count()
+    #获取机构下面的教师数
+    def course_org_teacher_num(self):
+        return self.teacher_set.all().count()
     def __unicode__(self):
         return self.name
 

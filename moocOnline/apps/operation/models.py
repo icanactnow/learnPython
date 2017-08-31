@@ -35,7 +35,7 @@ class UserFavorite(models.Model):
     fav_id = models.IntegerField(default=0,verbose_name=u'数据id')
     fav_type = models.IntegerField(choices=(('1',u'课程'),('2','课程机构'),('3','讲师')),verbose_name=u'收藏类型')
     add_data = models.DateField(default=datetime.now, verbose_name=u'加入时间')
-    class Mate:
+    class Meta:
         verbose_name = u'用户收藏'
         verbose_name_plural = verbose_name
 class UserMessage(models.Model):
@@ -44,7 +44,7 @@ class UserMessage(models.Model):
     has_read = models.BooleanField(default=False,verbose_name=u'是否读了')
     add_data = models.DateField(default=datetime.now, verbose_name=u'加入时间')
 
-    class Mate:
+    class Meta:
         verbose_name = u'用户信息'
         verbose_name_plural = verbose_name
 class UserCourse(models.Model):
@@ -52,6 +52,6 @@ class UserCourse(models.Model):
     course = models.ForeignKey(Course, verbose_name=u'评论的文章')
     add_data = models.DateField(default=datetime.now, verbose_name=u'加入时间')
 
-    class Mate:
+    class Meta:
         verbose_name = u'用户课程'
         verbose_name_plural = verbose_name

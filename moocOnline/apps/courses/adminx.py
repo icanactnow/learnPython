@@ -9,7 +9,6 @@ __date__ = '2017/8/23 16:51'
 # 注册邮箱验证这个model
 
 
-# 编写邮箱验证管理器
 class CourseAdmin(object):  # 注意这个继承
 
     list_display = ['name', 'desc', 'detail', 'degree', 'fav_nums', 'learn_times', 'students', 'image', 'click_nums',

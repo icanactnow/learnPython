@@ -26,6 +26,8 @@ class CoursesView(View):
 class DetailView(View):
     def get(self,request,course_name):
         course = Course.objects.get(name=course_name)
+        course.click_nums +=1
+        course.save()
         return render(request,'course-detail.html',locals())
 
 
